@@ -48,21 +48,21 @@ def configure(
     print_banner()
     console.print("\n[bold white]Authenticate with Doushi.ai[/bold white]\n")
 
-    api_keys_url = f"{DEFAULT_DASHBOARD_URL}/settings/api-keys"
+    api_keys_url = DEFAULT_DASHBOARD_URL
 
     if not key:
         if not no_browser:
-            console.print(f"👉 Opening your browser to generate or copy an API Key:\n   [bold cyan underline]{api_keys_url}[/bold cyan underline]\n")
+            console.print(f"👉 Opening your browser to your Doushi dashboard:\n   [bold cyan underline]{api_keys_url}[/bold cyan underline]\n")
             try:
                 webbrowser.open(api_keys_url)
             except Exception:
                 pass
         else:
-            console.print(f"👉 Visit your dashboard to generate or copy an API Key:\n   [bold cyan underline]{api_keys_url}[/bold cyan underline]\n")
+            console.print(f"👉 Visit your dashboard to copy your API Key:\n   [bold cyan underline]{api_keys_url}[/bold cyan underline]\n")
 
         key = Prompt.ask(
             "[bold green]🔑 Paste your Doushi API Key[/bold green] (starts with 'dsh_live_')",
-            password=True,
+            password=False,
         )
 
     key = key.strip()
@@ -82,7 +82,7 @@ def configure(
             print_error_panel(
                 title="Authentication Failed",
                 message=f"The provided API Key could not be verified: {e.message}",
-                remedy="Double check the key in your dashboard at https://doushi.ai/settings/api-keys"
+                remedy=f"Double check your API key in your dashboard at {DEFAULT_DASHBOARD_URL}"
             )
             raise typer.Exit(code=1)
         except Exception as e:

@@ -42,7 +42,7 @@ pipx run doushi demo
 ```bash
 doushi configure
 ```
-*(Prompts for your API key from [doushi.ai/settings/api-keys](https://doushi.ai/settings/api-keys))*
+*(Prompts for your API key from [app.doushi.ai](https://app.doushi.ai))*
 
 ### 2. Try the 30-second instant demo
 ```bash

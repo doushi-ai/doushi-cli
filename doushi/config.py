@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 DEFAULT_API_URL = "https://api.doushi.ai"
-DEFAULT_DASHBOARD_URL = "https://doushi.ai"
+DEFAULT_DASHBOARD_URL = "https://app.doushi.ai"
 
 DOUSHI_DIR = Path.home() / ".doushi"
 CREDENTIALS_FILE = DOUSHI_DIR / "credentials"

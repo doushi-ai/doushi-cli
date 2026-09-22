@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "doushi-cli"
-version = "0.1.0"
+version = "1.0.0"
 description = "Official CLI for Doushi.ai - Instant Autonomous ML Modeling from your Terminal"
-readme = "cli.md"
+readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
