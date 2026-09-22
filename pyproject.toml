@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doushi-cli"
+version = "0.1.0"
+description = "Official CLI for Doushi.ai - Instant Autonomous ML Modeling from your Terminal"
+readme = "cli.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Doushi AI Team", email = "support@doushi.ai" }
+]
+keywords = ["machine-learning", "ai", "cli", "automl", "doushi", "developer-tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "typer[all]>=0.12.0",
+    "rich>=13.7.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+doushi = "doushi.main:cli"
+dsh = "doushi.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["doushi*"]
