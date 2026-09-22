@@ -112,7 +112,7 @@ class DoushiClient:
         """Fetch current user and organization details."""
         self.check_auth_or_exit()
         with httpx.Client(timeout=self.timeout) as client:
-            resp = client.get(f"{self.base_url}/api/users/sync", headers=self._get_headers())
+            resp = client.post(f"{self.base_url}/api/users/sync", json={}, headers=self._get_headers())
             return self._handle_response(resp)
 
     def list_projects(self) -> List[Dict[str, Any]]:

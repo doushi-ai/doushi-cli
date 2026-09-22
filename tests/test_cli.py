@@ -41,7 +41,7 @@ class TestDoushiCLI(unittest.TestCase):
         """Verify --version flag outputs version."""
         result = self.runner.invoke(app, ["--version"])
         self.assertEqual(result.exit_code, 0)
-        self.assertIn("1.0.1", result.output)
+        self.assertIn("1.0.2", result.output)
 
     def test_subcommand_helps(self):
         """Verify subcommands provide descriptive help."""
