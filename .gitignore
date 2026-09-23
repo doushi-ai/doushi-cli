@@ -23,6 +23,10 @@ htmlcov/
 # Local Doushi credentials & temporary bundles (never commit credentials!)
 .doushi/
 doushi-model-bundle/
+test_e2e.py
+test-bundle/
+test_real_bundle/
+test-export-bundle/
 *.csv
 !sample_*.csv
 

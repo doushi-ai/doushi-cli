@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "doushi-cli"
-version = "1.0.2"
+version = "1.0.3"
 description = "Official CLI for Doushi.ai - Instant Autonomous ML Modeling from your Terminal"
 readme = "README.md"
 requires-python = ">=3.10"

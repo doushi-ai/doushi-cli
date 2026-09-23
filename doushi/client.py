@@ -253,3 +253,32 @@ class DoushiClient:
                 headers=self._get_headers()
             )
             return self._handle_response(resp)
+
+    def download_model_artifact(self, project_id: str, dest_file: Path) -> bool:
+        """Download trained model.pkl artifact to destination file."""
+        self.check_auth_or_exit()
+        try:
+            with httpx.Client(timeout=self.timeout) as client:
+                resp = client.get(f"{self.base_url}/api/projects/{project_id}/download-model", headers=self._get_headers())
+                data = self._handle_response(resp)
+                presigned_url = data.get("url")
+        except Exception:
+            return False
+
+        if not presigned_url:
+            return False
+
+        try:
+            with httpx.Client(timeout=180.0, follow_redirects=True) as client:
+                with client.stream("GET", presigned_url) as stream_resp:
+                    if stream_resp.status_code == 404:
+                        return False
+                    if not stream_resp.is_success:
+                        return False
+                    with open(dest_file, "wb") as f:
+                        for chunk in stream_resp.iter_bytes(chunk_size=65536):
+                            f.write(chunk)
+            return dest_file.exists() and dest_file.stat().st_size > 0
+        except Exception:
+            return False
+

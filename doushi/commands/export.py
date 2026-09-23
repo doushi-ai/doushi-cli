@@ -66,9 +66,17 @@ def export_model(
     with open(out_dir / "README.md", "w", encoding="utf-8") as f:
         f.write(generate_export_readme(project_id=project_id, project_name=project_name))
 
+    # 4. Download trained model.pkl artifact
+    model_file = out_dir / "model.pkl"
+    has_model_file = False
+    with console.status(f"[bold cyan]Downloading model artifact (model.pkl)...[/bold cyan]"):
+        has_model_file = client.download_model_artifact(project_id=project_id, dest_file=model_file)
+
     console.print("\n")
     print_success(f"Project exported successfully to [bold cyan]{out_dir}[/bold cyan]!")
     console.print("\n[dim]Files created:[/dim]")
+    if has_model_file:
+        console.print(f"  ├── [bold green]{out_dir}/model.pkl[/bold green] (trained model weights)")
     console.print(f"  ├── {out_dir}/pipeline.py")
     console.print(f"  ├── {out_dir}/serve.py")
     console.print(f"  ├── {out_dir}/Dockerfile")
